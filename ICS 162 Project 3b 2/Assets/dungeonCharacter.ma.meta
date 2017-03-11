@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: 260dfb4b2545c418687c40487e615e9a
-timeCreated: 1488159800
+guid: 38cbfb75341f31d47a8c81668152c123
+timeCreated: 1489276471
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: head
-    100002: left_ankle
-    100004: left_elbow
-    100006: left_foot
-    100008: left_hand
-    100010: left_hip
-    100012: left_knee
-    100014: left_shoulder
-    100016: left_wrist
-    100018: //RootNode
+    100000: //RootNode
+    100002: head
+    100004: left_ankle
+    100006: left_elbow
+    100008: left_foot
+    100010: left_hand
+    100012: left_hip
+    100014: left_knee
+    100016: left_shoulder
+    100018: left_wrist
     100020: neck
     100022: pelvis
     100024: polySurface16
@@ -28,16 +28,16 @@ ModelImporter:
     100040: right_wrist
     100042: spine1
     100044: spine2
-    400000: head
-    400002: left_ankle
-    400004: left_elbow
-    400006: left_foot
-    400008: left_hand
-    400010: left_hip
-    400012: left_knee
-    400014: left_shoulder
-    400016: left_wrist
-    400018: //RootNode
+    400000: //RootNode
+    400002: head
+    400004: left_ankle
+    400006: left_elbow
+    400008: left_foot
+    400010: left_hand
+    400012: left_hip
+    400014: left_knee
+    400016: left_shoulder
+    400018: left_wrist
     400020: neck
     400022: pelvis
     400024: polySurface16
@@ -254,7 +254,7 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: lohden_luke_project3b(Clone)
+    - name: dungeonCharacter(Clone)
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -306,7 +306,7 @@ ModelImporter:
       transformModified: 1
     - name: left_hand
       position: {x: -0.15019628, y: -0.0075348946, z: 0.03166026}
-      rotation: {x: -0.45680887, y: 0.88956493, z: 1.863248e-16, w: -9.5681464e-17}
+      rotation: {x: -0.45680887, y: 0.88956493, z: -1.11982404e-17, w: 5.7504968e-18}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
       transformModified: 1
     - name: right_shoulder
