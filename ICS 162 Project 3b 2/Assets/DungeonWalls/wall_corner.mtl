@@ -1,0 +1,15 @@
+# Blender MTL File: 'Tileset_combined_binary.blend'
+# Material Count: 1
+
+newmtl Claimedwall
+Ns 35.294118
+Ka 1.000000 1.000000 1.000000
+Kd 0.499200 0.499200 0.499200
+Ks 0.252427 0.252427 0.252427
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump -bm 0.783133 /Users/luke/Downloads/Tileset_combined_binary/textures/Claimedwall2_nor3.png
+map_Kd /Users/luke/Downloads/Tileset_combined_binary/textures/Claimedwall2C.png
+map_Ks /Users/luke/Downloads/Tileset_combined_binary/textures/Claimedwall2_spec3.png
