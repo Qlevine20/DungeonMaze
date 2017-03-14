@@ -37,6 +37,7 @@ public class Domino : ButtonScript {
         p.enabled = false;
         yield return new WaitForSeconds(12);
         b.fall = true;
+        yield return new WaitForSeconds(3);
         p.enabled = true;
         Camera.main.transform.parent = p.transform;
         Camera.main.transform.localPosition = camLoc;
