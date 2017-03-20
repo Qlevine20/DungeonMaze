@@ -9,9 +9,20 @@ public class LeverScript : ButtonScript {
     private Transform camParent;
     private Vector3 prevCamPos;
     private Quaternion prevCamRot;
+    public Bridge b;
+    public bool BridgeButton;
+    public bool LeverReady;
+    private bool bridgeDown;
+    private FinalBridgeScript bScript;
+
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
+        if (b)
+        {
+            bScript = b.GetComponent<FinalBridgeScript>();
+        }
+        
 	}
 
     // Update is called once per frame
@@ -22,7 +33,12 @@ public class LeverScript : ButtonScript {
 
     public override void PressButton()
     {
-        if (gate)
+        if (BridgeButton)
+        {
+            BridgeLever();
+            
+        }
+        else
         {
             StartCoroutine(OpenGate());
         }
@@ -53,4 +69,13 @@ public class LeverScript : ButtonScript {
         Camera.main.transform.localRotation = prevCamRot;
 
     }
+
+    public void BridgeLever()
+    {
+        LeverReady = !LeverReady;
+        bScript.OnLeverChange();
+        
+    }
+
+
 }

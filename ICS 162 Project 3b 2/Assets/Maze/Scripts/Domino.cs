@@ -5,12 +5,11 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class Domino : ButtonScript {
 
     Animator anim;
-    Bridge b;
+    public Bridge b;
     
 	// Use this for initialization
 	void Start () {
 	    anim = GetComponent<Animator>();
-        b = GameObject.FindGameObjectWithTag("Bridge").GetComponent<Bridge>();
     }
 	
 	// Update is called once per frame
