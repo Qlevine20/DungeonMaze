@@ -6,9 +6,12 @@ public class Domino : ButtonScript {
 
     Animator anim;
     public Bridge b;
+    private bool fallen = false;
+    
     
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        base.Start();
 	    anim = GetComponent<Animator>();
     }
 	
@@ -19,8 +22,14 @@ public class Domino : ButtonScript {
 
     public override void PressButton()
     {
-        anim.SetBool("PlayAnim", true);
-        StartCoroutine(DominosFall());
+        if (!fallen)
+        {
+            base.PressButton();
+            anim.SetBool("PlayAnim", true);
+            StartCoroutine(DominosFall());
+            fallen = true;
+        }
+
         
     }
 

@@ -4,8 +4,14 @@ using System.Collections;
 public class DoorScript : ButtonScript {
 
     Animator anim;
+    public AudioClip doorOpen;
+    public AudioClip doorClose;
+    public AudioClip doorBreak;
+    public Transform Player;
+    private bool open = false;
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        base.Start();
         anim = GetComponent<Animator>();
 	}
 	
@@ -15,12 +21,49 @@ public class DoorScript : ButtonScript {
 	}
 
 
+    public override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if(other.gameObject.tag == "Boulder")
+        {
+            CrushDoor();
+        }
+    }
+
     public override void PressButton()
     {
-        anim.SetBool("Open", true);
-        foreach(BoxCollider b in GetComponents<BoxCollider>())
+        base.PressButton();
+        open = !open;
+        anim.SetBool("Open", open);
+        if (open)
         {
-            b.enabled = false;
+            AudioSource.PlayClipAtPoint(doorOpen, Player.position);
+            foreach (BoxCollider b in GetComponents<BoxCollider>())
+            {
+                b.enabled = false;
+            }
         }
+        else
+        {
+            AudioSource.PlayClipAtPoint(doorClose, Player.position);
+            foreach (BoxCollider b in GetComponents<BoxCollider>())
+            {
+                b.enabled = true;
+            }
+        }
+
+    }
+
+    public void CrushDoor()
+    {
+        StartCoroutine(DestroyDoor());
+    }
+
+    IEnumerator DestroyDoor()
+    {
+        anim.SetBool("Destroy", true);
+        AudioSource.PlayClipAtPoint(doorBreak, Player.position);
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 }

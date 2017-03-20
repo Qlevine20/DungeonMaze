@@ -14,9 +14,11 @@ public class LeverScript : ButtonScript {
     public bool LeverReady;
     private bool bridgeDown;
     private FinalBridgeScript bScript;
+    private bool LeverPulled = false;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        base.Start();
         anim = GetComponent<Animator>();
         if (b)
         {
@@ -33,15 +35,21 @@ public class LeverScript : ButtonScript {
 
     public override void PressButton()
     {
-        if (BridgeButton)
+        if (!LeverPulled)
         {
-            BridgeLever();
-            
+            base.PressButton();
+            if (BridgeButton)
+            {
+                BridgeLever();
+
+            }
+            else
+            {
+                StartCoroutine(OpenGate());
+                LeverPulled = true;
+            }
         }
-        else
-        {
-            StartCoroutine(OpenGate());
-        }
+
     }
 
 
@@ -62,7 +70,7 @@ public class LeverScript : ButtonScript {
         Camera.main.transform.localPosition = new Vector3(0, 5, 15);
         Camera.main.transform.localRotation = Quaternion.LookRotation(gate.transform.position - Camera.main.transform.position);
         gate.open = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         p.enabled = true;
         Camera.main.transform.parent = camParent;
         Camera.main.transform.localPosition = prevCamPos;

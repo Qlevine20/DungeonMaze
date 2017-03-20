@@ -5,9 +5,11 @@ public class ButtonScript : MonoBehaviour {
 
 
     bool canPress = false;
+    private AudioClip successSound;
 	// Use this for initialization
-	void Start () {
-	
+	public virtual void Start () {
+        successSound = Resources.Load("Success",typeof(AudioClip)) as AudioClip;
+        Debug.Log(successSound);
 	}
 	
 	// Update is called once per frame
@@ -17,12 +19,13 @@ public class ButtonScript : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PressButton();
+                
             }
         }
 	}
 
 
-    void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
@@ -40,6 +43,6 @@ public class ButtonScript : MonoBehaviour {
 
     public virtual void PressButton()
     {
-
+        AudioSource.PlayClipAtPoint(successSound, Camera.main.transform.position);
     }
 }

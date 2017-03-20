@@ -11,6 +11,7 @@ public class FinalBridgeScript : MonoBehaviour {
     private Transform camParent;
     private Vector3 prevCamPos;
     private Quaternion prevCamRot;
+    private bool bridgeFallen = false;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +24,6 @@ public class FinalBridgeScript : MonoBehaviour {
 
     public void OnLeverChange()
     {
-        Debug.Log("called");
         allLeversReady = true;
         foreach(LeverScript l in levers)
         {
@@ -34,9 +34,8 @@ public class FinalBridgeScript : MonoBehaviour {
             }
         }
         Debug.Log(allLeversReady);
-        if (allLeversReady)
+        if (allLeversReady && !bridgeFallen)
         {
-            Debug.Log("Drop");
             StartCoroutine(DropBridge());
         }
     }
@@ -45,6 +44,7 @@ public class FinalBridgeScript : MonoBehaviour {
     {
         if (b)
         {
+            bridgeFallen = true;
             ThirdPersonCharacter p = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonCharacter>();
             p.enabled = false;
             camParent = Camera.main.transform.parent;
