@@ -27,13 +27,11 @@ public class FinalBridgeScript : MonoBehaviour {
         allLeversReady = true;
         foreach(LeverScript l in levers)
         {
-            Debug.Log(l.LeverReady);
             if(l.LeverReady == false)
             {
                 allLeversReady = false;
             }
         }
-        Debug.Log(allLeversReady);
         if (allLeversReady && !bridgeFallen)
         {
             StartCoroutine(DropBridge());

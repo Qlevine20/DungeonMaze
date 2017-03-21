@@ -9,6 +9,8 @@ public class DoorScript : ButtonScript {
     public AudioClip doorBreak;
     public Transform Player;
     private bool open = false;
+    public bool Interactable = true;
+    public bool breakable = false;
 	// Use this for initialization
 	public override void Start () {
         base.Start();
@@ -17,40 +19,52 @@ public class DoorScript : ButtonScript {
 	
 	// Update is called once per frame
 	public override void Update () {
-        base.Update();
+        if (Interactable)
+        {
+            base.Update();
+        }
+        
 	}
 
 
     public override void OnTriggerEnter(Collider other)
     {
-        base.OnTriggerEnter(other);
-        if(other.gameObject.tag == "Boulder")
+        if (Interactable)
         {
-            CrushDoor();
+            base.OnTriggerEnter(other);
+            if (other.gameObject.tag == "Boulder")
+            {
+                CrushDoor();
+            }
         }
+
     }
 
     public override void PressButton()
     {
-        base.PressButton();
-        open = !open;
-        anim.SetBool("Open", open);
-        if (open)
+        if (!breakable)
         {
-            AudioSource.PlayClipAtPoint(doorOpen, Player.position);
-            foreach (BoxCollider b in GetComponents<BoxCollider>())
+            base.PressButton();
+            open = !open;
+            anim.SetBool("Open", open);
+            if (open)
             {
-                b.enabled = false;
+                AudioSource.PlayClipAtPoint(doorOpen, Player.position);
+                foreach (BoxCollider b in GetComponents<BoxCollider>())
+                {
+                    b.enabled = false;
+                }
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(doorClose, Player.position);
+                foreach (BoxCollider b in GetComponents<BoxCollider>())
+                {
+                    b.enabled = true;
+                }
             }
         }
-        else
-        {
-            AudioSource.PlayClipAtPoint(doorClose, Player.position);
-            foreach (BoxCollider b in GetComponents<BoxCollider>())
-            {
-                b.enabled = true;
-            }
-        }
+
 
     }
 
@@ -63,7 +77,11 @@ public class DoorScript : ButtonScript {
     {
         anim.SetBool("Destroy", true);
         AudioSource.PlayClipAtPoint(doorBreak, Player.position);
+        foreach (BoxCollider b in GetComponents<BoxCollider>())
+        {
+            b.enabled = false;
+        }
         yield return new WaitForSeconds(2);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

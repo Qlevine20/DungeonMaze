@@ -9,7 +9,6 @@ public class ButtonScript : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
         successSound = Resources.Load("Success",typeof(AudioClip)) as AudioClip;
-        Debug.Log(successSound);
 	}
 	
 	// Update is called once per frame
