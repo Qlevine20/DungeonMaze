@@ -79,6 +79,12 @@ public class LeverScript : ButtonScript {
         Camera.main.transform.parent = gate.transform;
         Camera.main.transform.localPosition = new Vector3(0, 3, 2);
         Camera.main.transform.localRotation = Quaternion.LookRotation(gate.transform.position - Camera.main.transform.position);
+
+		foreach (Collider c in gate.GetComponents<Collider> ()) 
+		{
+			c.enabled = false;
+		}
+
         yield return new WaitForSeconds(2);
         p.enabled = true;
         Camera.main.transform.parent = camParent;
